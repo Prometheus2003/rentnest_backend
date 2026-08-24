@@ -1,4 +1,4 @@
-import {Request, Response, NextFunction} from 'express';
+import { Request, Response, NextFunction } from 'express';
 import { PropertyService } from './property.service';
 
 const createProperty = async (req: Request, res: Response, next: NextFunction) => {
@@ -17,7 +17,20 @@ const createProperty = async (req: Request, res: Response, next: NextFunction) =
         next(error);
     }
 };
+const getAllProperties = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const result = await PropertyService.getAllProperties();
+        res.status(200).json({
+            success: true,
+            message: "Properties retrieved successfully",
+            data: result,
+        });
+    } catch (err) {
+        next(err);
+    }
+};
 
 export const PropertyController = {
     createProperty,
+    getAllProperties,
 };
