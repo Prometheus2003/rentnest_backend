@@ -1,6 +1,7 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
-
+import globalErrorHandler from './middleware/globalErrorHandler';
+import notFound from './middleware/notFound';
 const app: Application = express();
 
 // Parsers
@@ -13,5 +14,6 @@ app.get('/', (req: Request, res: Response) => {
 });
 
 // We will add global error handlers and actual routes here later!
-
+app.use(notFound);
+app.use(globalErrorHandler);
 export default app;
