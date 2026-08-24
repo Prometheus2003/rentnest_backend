@@ -5,7 +5,11 @@ import config from '../config';
 const auth = (...requiredRoles: string[]) => {
     return async (req: Request, res: Response, next: NextFunction) => {
         try {
-            const token = req.headers.authorization;
+            // Support both "Bearer <token>" and just "<token>"
+            let token = req.headers.authorization;
+            if (token && token.startsWith('Bearer ')) {
+                token = token.split(' ')[1];
+            }
 
             if (!token) {
                 throw new Error('No token provided');

@@ -3,6 +3,8 @@ import cors from 'cors';
 import globalErrorHandler from './middleware/globalErrorHandler';
 import notFound from './middleware/notFound';
 import { UserRoutes } from './modules/User/user.route';
+import { PropertyRoutes } from './modules/Property/property.route';
+import { CategoryRoutes } from './modules/Category/category.route';
 const app: Application = express();
 
 
@@ -16,7 +18,8 @@ app.get('/', (req: Request, res: Response) => {
 
 
 app.use('/api', UserRoutes);
-
+app.use('/api/properties', PropertyRoutes);
+app.use('/api/categories', CategoryRoutes);
 
 app.use(notFound);
 app.use(globalErrorHandler);
