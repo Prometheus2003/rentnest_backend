@@ -21,7 +21,34 @@ const getAllProperties = async () => {
     });
     return result;
 }
+const getPropertyById = async (id: string) => {
+    const result = await prisma.property.findUnique({
+        where: { id },
+        include: {
+            category: true,
+            landlord: true
+        }
+    });
+    return result;
+}
+const updateProperty = async (id: string, payload: any) => {
+    const result = await prisma.property.update({
+        where: { id },
+        data: payload,
+    });
+    return result;
+}
+const deleteProperty = async (id: string) => {
+    const result = await prisma.property.delete({
+        where: { id }
+    });
+    return result;
+}
+
 export const PropertyService = {
     createProperty,
-    getAllProperties
+    getAllProperties,
+    getPropertyById,
+    updateProperty,
+    deleteProperty
 };
