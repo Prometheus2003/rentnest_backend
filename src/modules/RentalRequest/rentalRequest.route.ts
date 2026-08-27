@@ -10,4 +10,9 @@ router.post('/', auth('TENANT'), validateRequest(RentalRequestValidation.createR
 
 router.get('/my-requsets', auth('TENANT'), RentalRequestController.getMyRequests);
 
+router.get('/landlord-request', auth('LANDLORD'),
+    RentalRequestController.getRequestsForLandLord)
+
+router.put('/:id/status', auth('LANDLORD'), RentalRequestController.updateRentalRequestStatus);
+
 export const RentalRequestRoutes = router;
