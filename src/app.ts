@@ -7,8 +7,9 @@ import { PropertyRoutes } from './modules/Property/property.route';
 import { CategoryRoutes } from './modules/Category/category.route';
 import { RentalRequestRoutes } from './modules/RentalRequest/rentalRequest.route';
 import { PaymentRoutes } from './modules/Payment/payment.route';
-const app: Application = express();
+import { ProfileRoutes } from './modules/User/user.profile.route';
 
+const app: Application = express();
 
 app.use(express.json());
 app.use(cors());
@@ -18,7 +19,7 @@ app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to the RentNest API!');
 });
 app.use('/api/payment', PaymentRoutes)
-
+app.use('/api', ProfileRoutes)
 app.use('/api', UserRoutes);
 app.use('/api/properties', PropertyRoutes);
 app.use('/api/categories', CategoryRoutes);
