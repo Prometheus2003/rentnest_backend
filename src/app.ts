@@ -9,6 +9,7 @@ import { RentalRequestRoutes } from './modules/RentalRequest/rentalRequest.route
 import { PaymentRoutes } from './modules/Payment/payment.route';
 import { ProfileRoutes } from './modules/User/user.profile.route';
 import { ReviewRoutes } from './modules/Review/review.route';
+import { AdminRoutes } from './modules/Admin/admin.route';
 
 const app: Application = express();
 
@@ -19,13 +20,15 @@ app.use(cors());
 app.get('/', (req: Request, res: Response) => {
     res.send('Welcome to the RentNest API!');
 });
-app.use('/api/payment', PaymentRoutes)
-app.use('/api', ProfileRoutes)
+
 app.use('/api', UserRoutes);
 app.use('/api/properties', PropertyRoutes);
 app.use('/api/categories', CategoryRoutes);
 app.use('/api/rental-requests', RentalRequestRoutes);
+app.use('/api/payment', PaymentRoutes)
+app.use('/api', ProfileRoutes)
 app.use('/api/reviews', ReviewRoutes);
+app.use('/api/admin', AdminRoutes);
 
 app.use(notFound);
 app.use(globalErrorHandler);
