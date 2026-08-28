@@ -8,6 +8,7 @@ import { CategoryRoutes } from './modules/Category/category.route';
 import { RentalRequestRoutes } from './modules/RentalRequest/rentalRequest.route';
 import { PaymentRoutes } from './modules/Payment/payment.route';
 import { ProfileRoutes } from './modules/User/user.profile.route';
+import { ReviewRoutes } from './modules/Review/review.route';
 
 const app: Application = express();
 
@@ -24,6 +25,10 @@ app.use('/api', UserRoutes);
 app.use('/api/properties', PropertyRoutes);
 app.use('/api/categories', CategoryRoutes);
 app.use('/api/rental-requests', RentalRequestRoutes);
+app.use('/api/reviews', ReviewRoutes);
+
 app.use(notFound);
 app.use(globalErrorHandler);
+
+
 export default app;
