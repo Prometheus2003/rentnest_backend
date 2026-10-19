@@ -26,7 +26,19 @@ const getPropertyById = async (id: string) => {
         where: { id },
         include: {
             category: true,
-            landlord: true
+            landlord: true,
+            reviews: {
+                include: {
+                    tenant: {
+                        select: {
+                            name: true,
+                        }
+                    }
+                },
+                orderBy: {
+                    createdAt: 'desc'
+                }
+            }
         }
     });
     return result;

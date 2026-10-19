@@ -3,7 +3,7 @@ import Stripe from 'stripe';
 import config from '../../config';
 
 
-const stripe = new Stripe(config.stripe_secret as string, {
+const stripe = new Stripe(config.stripe_secret || 'sk_test_placeholder', {
     apiVersion: '2026-08-26.dahlia',
 });
 
